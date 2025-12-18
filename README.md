@@ -30,17 +30,31 @@ Once running, the application will be available at:
 http://localhost:5000
 ```
 
-## Public Demo (Optional)
+## 🌐 Cloudflare Tunnel Setup (Optional)
 
-To expose the local application through a public URL (for demos or sharing), run:
+To expose the local application through a public URL, install the `cloudflared` CLI tool.
 
+**Windows**
+```bash
+winget install Cloudflare.cloudflared
+```
+
+**macOS**
+```bash
+brew install cloudflare/cloudflare/cloudflared
+```
+
+**Linux**
+```bash
+sudo apt install cloudflared
+```
+
+Once installed, start the tunnel with:
 ```bash
 cloudflared tunnel --url http://localhost:5000
 ```
 
-The terminal output will display a temporary public HTTPS URL (e.g. `https://*.trycloudflare.com`) that can be accessed from any computer **while the app and tunnel are running**.
-
-> The public URL changes each time the tunnel is started.
+The terminal will display a temporary public HTTPS URL (e.g. `https://*.trycloudflare.com`) that can be accessed from any computer while the app and tunnel are running.
 
 
 ## Notes
