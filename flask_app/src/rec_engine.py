@@ -5,17 +5,11 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-import re, ast
-from scipy.sparse import csr_matrix, hstack, vstack, issparse
+from scipy.sparse import hstack
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.feature_extraction.text import TfidfVectorizer, HashingVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.manifold import TSNE
-from sklearn.decomposition import PCA
 
 df = pd.read_csv('../data/prep.csv')
 print(f" Loaded! Shape: {df.shape}")

@@ -4,8 +4,6 @@ import sqlite3, os
 from src import rec_engine
 import time
 
-DATABASE = '../data/amazon.db'
-
 app = Flask(__name__)
 
 
@@ -17,30 +15,6 @@ def index():
 @app.route('/static/<path:path>')
 def send_report(path):
     return send_from_directory('static', path)
-
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-
-    def make_dicts(cursor, row):
-        return dict((cursor.description[idx][0], value)
-                    for idx, value in enumerate(row))
-
-    db.row_factory = make_dicts
-    # db.row_factory = sqlite3.Row
-    return db
-
-
-def query_db(query, args=(), action='get'):
-    db = get_db()
-    conn = db.execute(query, args)
-    response = conn.fetchall()
-    if action.lower() in ('post'):
-        db.commit()
-    conn.close()
-    return response
 
 def load_dfs():
     global samples_clean
@@ -196,14 +170,6 @@ def get_recs():
             "error": str(e)
         }
 
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
-
-
 if __name__ == '__main__':
     load_dfs()
-    app.run(debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
