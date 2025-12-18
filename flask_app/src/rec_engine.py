@@ -11,7 +11,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-df = pd.read_csv('../data/prep.csv')
+from src.fetch_data import ensure_data
+
+DATA_DIR = ensure_data()
+
+df = pd.read_csv(DATA_DIR / "prep.csv")
 print(f" Loaded! Shape: {df.shape}")
 print(f" Columns: {df.columns.tolist()}")
 print(f" Unique books: {df['parent_asin'].nunique():,}")

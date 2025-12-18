@@ -1,70 +1,60 @@
-# AmazonRecommender
+# Amazon Recommender System
 
-Download data at `https://amazon-reviews-2023.github.io/`
+📘 **Project Report**  
+👉 [Open the complete project report](docs/AR_Report.pdf)
 
-## Initial database setup
+📊 **Presentation Slides**  
+👉 [Open presentation slides](docs/AR_Presentation.pdf)
 
-Next to /scripts, there should also be a /data folder. Put __meta_Video_Games.jsonl__ and __Video_Games.jsonl__ into the data folder. Do nothing else. Then follow the steps below.
 
-1. In the scripts dir > ``python3 extract.py``
-2. In the data dir > ``sqlite3 amazon.db``
-3. In sqlite > ``.read ../scripts/create_tables.sql``
-4. In sqlite > ``.read ../scripts/import_tables.sql``
+This repository contains the source code and supporting materials for the **Amazon Recommender System** project.
 
-> There should be no errors and no response to terminal for anything except extract.py. 
-You can test the sqlite db with:
+The full documentation is provided in the PDF linked above.
 
-```sql
-select count(*) 
-from amazon_products;
--- 137269
-```
 
-```sql
-select count(*) 
-from product_reviews;
---4624615
-```
+## How to Run Locally
 
-Also, set the output to pretty-print the table with:
-``.mode columns`` and ``.headers on``
-
-Then figure out the rest of whatever formatting you want on your own.
-
-## Python Environment & Dependencies
-
-This project supports uv: fast, modern package manager
-
-To install uv run:
+### Setup
 ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+pip install -r requirements.txt
 ```
 
-Then try to run this to make sure uv is installed properly.
+### Start the application
 ```bash
-uv --version
+cd flask_app
+python app.py
 ```
 
-Sync dependencies by running this:
-```bash
-uv sync
+Once running, the application will be available at:
+```
+http://localhost:5000
 ```
 
-The golden rule is for every `git pull`, you run a `uv sync`! If you do that, you will automatically sync all necessary dependencies for the project.
+## Public Demo (Optional)
 
-(Optionally) Select interpreter so you don't have to activate the venv every time.
-
-1. Open the folder that has .venv in VS Code (File → Open Folder).
-
-2. Press: `Ctrl + Shift + P`
-
-3. Type: Python: Select Interpreter
-
-4. Pick the one that looks like:
+To expose the local application through a public URL (for demos or sharing), run:
 
 ```bash
-.venv\Scripts\python.exe
+cloudflared tunnel --url http://localhost:5000
 ```
+
+The terminal output will display a temporary public HTTPS URL (e.g. `https://*.trycloudflare.com`) that can be accessed from any computer **while the app and tunnel are running**.
+
+> The public URL changes each time the tunnel is started.
+
+
+## Notes
+- Large datasets are downloaded automatically on first run and cached locally.
+- The project is designed to run locally for performance and reproducibility.
+
+
+## License
+This project is intended for educational and demonstration purposes.
+
+
+
+
+
 
 
 

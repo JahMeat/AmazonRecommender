@@ -1,8 +1,11 @@
 from flask import Flask, render_template, send_from_directory, request, jsonify, g
 import pandas as pd
 import sqlite3, os
-from src import rec_engine
 import time
+from src.fetch_data import ensure_data
+from src import rec_engine
+
+DATA_DIR = ensure_data()
 
 app = Flask(__name__)
 
@@ -18,12 +21,12 @@ def send_report(path):
 
 def load_dfs():
     global samples_clean
-    all_samples = pd.read_csv('../data/amazon_product_samples.csv')
+    all_samples = pd.read_csv(DATA_DIR / "amazon_product_samples.csv")
     all_samples.fillna('', inplace=True)
     samples_clean = all_samples.where(pd.notnull(all_samples), None)
 
     global all_products_cleaned
-    all_products = pd.read_csv('../data/cleaned_amazon_products.csv')
+    all_products = pd.read_csv(DATA_DIR / "cleaned_amazon_products.csv")
     all_products.fillna('', inplace=True)
     all_products_cleaned = all_products.where(pd.notnull(all_products), None)
 
