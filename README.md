@@ -1,25 +1,23 @@
-# Amazon Recommender System
-
-📘 **Project Report**  
-👉 [Open the complete project report](docs/AR_Report.pdf)
-
-📊 **Presentation Slides**  
-👉 [Open presentation slides](docs/AR_Presentation.pdf)
-
+# Overview
 
 This repository contains the source code and supporting materials for the **Amazon Recommender System** project.
 
-The full documentation is provided in the PDF linked above.
+> [**Project Report**](docs/AR_Report.pdf)
+
+> [**Presentation Slides**](docs/AR_Presentation.pdf)
+
+> [**Data Source**](https://amazon-reviews-2023.github.io/)
 
 
-## How to Run Locally
 
-### Setup
+# Set Up
+
+Install relevant dependencies.
 ```bash
 pip install -r requirements.txt
 ```
 
-### Start the application
+Start the application.
 ```bash
 cd flask_app
 python app.py
@@ -30,7 +28,7 @@ Once running, the application will be available at:
 http://localhost:5000
 ```
 
-## 🌐 Cloudflare Tunnel Setup (Optional)
+## Cloudflare Tunnel Setup (Optional)
 
 To expose the local application through a public URL, install the `cloudflared` CLI tool.
 
@@ -56,14 +54,10 @@ cloudflared tunnel --url http://localhost:5000
 
 The terminal will display a temporary public HTTPS URL (e.g. `https://*.trycloudflare.com`) that can be accessed from any computer while the app and tunnel are running.
 
+# Implications
+This project illustrates how data-driven systems can meaningfully influence user experience, decision-making, and platform efficiency at scale. Thoughtful recommendation design has real implications for discovery, fairness, and trust which ties directly to making system transparency, evaluation, and reproducibility essential.
 
-## Notes
-- Large datasets are downloaded automatically on first run and cached locally.
-- The project is designed to run locally for performance and reproducibility.
-
-
-## License
-This project is intended for educational and demonstration purposes.
+The techniques explored here form a foundation for building responsible, scalable recommendation systems in real-world environments.
 
 
 
